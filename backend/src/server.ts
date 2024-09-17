@@ -7,6 +7,8 @@ import authRoutes from './routes/authRoutes'; // Rotas de autenticação
 import userListRoutes from './routes/userListRoutes';
 import taskRoutes from './routes/taskRoutes';
 import cookieParser from 'cookie-parser';
+import alunoRoutes from './routes/alunoRoutes';
+import profRoutes from './routes/professorRoutes'
 
 dotenv.config({ path: 'variaveis.env' });
 
@@ -26,7 +28,9 @@ AppDataSource.initialize()
     app.use(cookieParser())
     app.use('/auth', authRoutes);
     app.use('/user',userListRoutes);
-    app.use('/task',taskRoutes)
+    app.use('/task',taskRoutes);
+    app.use('/aluno',alunoRoutes)
+    app.use('/prof',profRoutes)
 
     app.listen(port, () => {
       console.log(`Servidor rodando na porta ${port}`);

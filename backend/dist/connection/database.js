@@ -8,6 +8,8 @@ const typeorm_1 = require("typeorm");
 const User_1 = require("../entity/User");
 const Task_1 = require("../entity/Task");
 const dotenv_1 = __importDefault(require("dotenv"));
+const Aluno_1 = require("../entity/Aluno");
+const Professor_1 = require("../entity/Professor");
 dotenv_1.default.config({ path: 'variaveis.env' });
 exports.AppDataSource = new typeorm_1.DataSource({
     type: 'postgres',
@@ -16,7 +18,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     username: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [User_1.User, Task_1.Task],
+    entities: [User_1.User, Task_1.Task, Aluno_1.Aluno, Professor_1.Professor],
     synchronize: true,
     logging: false,
 });

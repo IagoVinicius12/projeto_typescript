@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: app_ASA
+    ports:
+      - "3001:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=123
+      - DB_NAME=testets
+      - PORT=3000
+    command: ["nodemon", "dist/server.js"]
+
+  db:
+    image: postgres:14
+    ports:
+      - "5433:5432"  # Mapeia a porta 5432 do contêiner para a porta 5433 no host
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=testets

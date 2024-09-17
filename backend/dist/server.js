@@ -12,6 +12,8 @@ const authRoutes_1 = __importDefault(require("./routes/authRoutes")); // Rotas d
 const userListRoutes_1 = __importDefault(require("./routes/userListRoutes"));
 const taskRoutes_1 = __importDefault(require("./routes/taskRoutes"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const alunoRoutes_1 = __importDefault(require("./routes/alunoRoutes"));
+const professorRoutes_1 = __importDefault(require("./routes/professorRoutes"));
 dotenv_1.default.config({ path: 'variaveis.env' });
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3001;
@@ -27,6 +29,8 @@ database_1.AppDataSource.initialize()
     app.use('/auth', authRoutes_1.default);
     app.use('/user', userListRoutes_1.default);
     app.use('/task', taskRoutes_1.default);
+    app.use('/aluno', alunoRoutes_1.default);
+    app.use('/prof', professorRoutes_1.default);
     app.listen(port, () => {
         console.log(`Servidor rodando na porta ${port}`);
     });

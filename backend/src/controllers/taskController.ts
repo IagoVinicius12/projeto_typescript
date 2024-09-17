@@ -91,7 +91,7 @@ export const taskUpdate = async (req: Request, res: Response) => {
     }
 }
 
-export const userCreatingTask = async (req: AuthRequest, res: Response) => {
+export const    userCreatingTask = async (req: AuthRequest, res: Response) => {
     try {
         const userId = req.user?.id;
         const { nome, checked } = req.body;

@@ -10,7 +10,7 @@ COPY package*.json ./
 # Instale as dependências do projeto, incluindo as devDependencies
 RUN npm install
 
-# Instale o TypeScript globalmente
+# Instale o TypeScript globalmente (ou pode ser apenas nas devDependencies)
 RUN npm install -g typescript
 
 # Copie o restante dos arquivos da aplicação para o contêiner

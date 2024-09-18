@@ -27,7 +27,7 @@ export const todos_professores=async(req:Request,res:Response)=>{
     try{
         const prof= await AppDataSource.manager.find(Professor)
         if(prof){
-            res.status(200).json({message:"Aqui estão os alunos",prof})
+            res.status(200).json({message:"Aqui estão os professores:",prof})
         }
     }catch(error){
         res.status(500).json({message:"Ocorreu um erro"})
@@ -71,5 +71,20 @@ export const delete_professor=async(req:Request,res:Response)=>{
 
     }catch(error){
         res.status(500).json({message:"Ocorreu um erro"})
+    }
+}
+
+export const prof_id= async(req:Request,res:Response)=>{
+    const {id}=req.params
+    try{
+        const prof= await AppDataSource.getRepository(Professor).findOne({where: {id:parseInt(id)}})
+        if(prof){
+            res.status(200).json({message:'Professor achado com sucesso',prof})
+        }
+        else{
+            res.status(404).json({message:'Professor não encontrado'})
+        }
+    }catch(error){
+        res.status(500).json({message:'Não foi possível achar o professor'})
     }
 }

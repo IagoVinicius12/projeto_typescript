@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.delete_professor = exports.update_prof = exports.todos_professores = exports.cadastro_professor = void 0;
+exports.prof_id = exports.delete_professor = exports.update_prof = exports.todos_professores = exports.cadastro_professor = void 0;
 const database_1 = require("../connection/database");
 const Professor_1 = require("../entity/Professor");
 const cadastro_professor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -36,7 +36,7 @@ const todos_professores = (req, res) => __awaiter(void 0, void 0, void 0, functi
     try {
         const prof = yield database_1.AppDataSource.manager.find(Professor_1.Professor);
         if (prof) {
-            res.status(200).json({ message: "Aqui estão os alunos", prof });
+            res.status(200).json({ message: "Aqui estão os professores:", prof });
         }
     }
     catch (error) {
@@ -83,3 +83,19 @@ const delete_professor = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.delete_professor = delete_professor;
+const prof_id = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        const prof = yield database_1.AppDataSource.getRepository(Professor_1.Professor).findOne({ where: { id: parseInt(id) } });
+        if (prof) {
+            res.status(200).json({ message: 'Professor achado com sucesso', prof });
+        }
+        else {
+            res.status(404).json({ message: 'Professor não encontrado' });
+        }
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Não foi possível achar o professor' });
+    }
+});
+exports.prof_id = prof_id;
